@@ -1,0 +1,11 @@
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: mysql1
+    environment:
+      MYSQL_ROOT_PASSWORD: d#demo
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
