@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.testcontainers.containers.MySQLContainer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import io.restassured.RestAssured;
+import nz.co.stylesoftware.order.stubs.InventoryClientStub;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,6 +45,7 @@ class OrderServiceApplicationTests {
 				    "quantity": 1
 				}
 				""";
+		InventoryClientStub.stubInventoryCall("iphone_15", 1);
 		
 		var responseBodyString = RestAssured.given()
 				.contentType("application/json")
